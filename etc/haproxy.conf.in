@@ -5,7 +5,7 @@ global
   group    ${haproxy-conf:group}
   daemon
   nbproc 1
-  stats socket /tmp/${haproxy-conf:user} user ${haproxy-conf:user} level admin
+  stats socket ${buildout:directory}/haproxy/haproxy-socket user ${haproxy-conf:user} level admin
 
 defaults
   mode http
