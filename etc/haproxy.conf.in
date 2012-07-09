@@ -30,7 +30,7 @@ defaults
   stats refresh 5s
   stats realm Haproxy\ statistics
 
-frontend varnish
+frontend apache 
   bind ${haproxy-conf:bind}
   default_backend back_anon
 
