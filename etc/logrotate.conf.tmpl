@@ -19,7 +19,7 @@ uncompresscmd /bin/bunzip2
 compressext .bz2
 
 # kill -USR2 on the zope process will reopen the logfiles
-${buildout:directory}/var/log/*.log {
+${buildout:directory}/var/log/instance*.log {
     sharedscripts
     postrotate
         for i in ${buildout:directory}/var/instance*.pid; do /bin/kill -USR2 $(cat $i); done;
