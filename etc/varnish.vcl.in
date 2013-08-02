@@ -1,0 +1,144 @@
+# This is a basic VCL configuration file for varnish.  See the vcl(7)
+# man page for details on VCL syntax and semantics.
+
+backend backend_0 {
+	.host = "127.0.0.1";
+	.port = "${haproxy-conf:port}";
+	.connect_timeout = 10s;
+	.first_byte_timeout = 300s;
+	.between_bytes_timeout = 60s;
+}
+
+acl purge {
+    "localhost";
+	"127.0.0.1";
+}
+
+sub vcl_recv {
+    set req.backend = backend_0;
+
+    if (req.backend.healthy) {
+        set req.grace = 300s;
+    } else {
+        set req.grace = 1h;
+    }
+
+    if (req.request == "PURGE") {
+        if (!client.ip ~ purge) {
+            error 405 "Not allowed.";
+        }
+        return(lookup);
+    }
+
+    if (req.request != "GET" &&
+        req.request != "HEAD" &&
+        req.request != "PUT" &&
+        req.request != "POST" &&
+        req.request != "TRACE" &&
+        req.request != "OPTIONS" &&
+        req.request != "DELETE") {
+        /* Non-RFC2616 or CONNECT which is weird. */
+        return(pipe);
+    }
+
+    if (req.request != "GET" && req.request != "HEAD") {
+        /* We only deal with GET and HEAD by default */
+        return(pass);
+    }
+
+    if (req.http.If-None-Match) {
+        return(pass);
+    }
+
+    if (req.url ~ "createObject") {
+        return(pass);
+    }
+    
+    # get rid of cookies we do not want to store in the cache
+    if (req.http.Cookie) {
+        set req.http.Cookie = regsuball(req.http.Cookie, "(^|; ) *__utm.=[^;]+;? *", "\1"); # removes all cookies named __utm?
+        set req.http.Cookie = regsuball(req.http.Cookie, "(^|; ) *__atuvc=[^;]+;? *", "\1"); # removes all cookies named __atuvc?
+        set req.http.Cookie = regsuball(req.http.Cookie, "(^|; ) *serverid=[^;]+;? *", "\1"); # removes all haproxy cookies
+
+        if (req.http.Cookie == "") {
+            remove req.http.Cookie;
+        }
+    }
+
+    # Don't cache authenticated requests
+    if (req.http.Cookie && req.http.Cookie ~ "(_ZopeId|__ac)") {
+
+        # Force lookup of specific urls unlikely to need protection
+#        if (req.url ~ "\.(js|css|kss)") {
+#            remove req.http.cookie;
+#                    return(lookup);
+#         }
+         return(pass);
+    }
+
+    remove req.http.Accept-Encoding;
+
+    return(lookup);
+}
+
+sub vcl_pipe {
+    # This is not necessary if you do not do any request rewriting.
+    set req.http.connection = "close";
+}
+
+sub vcl_hit {
+    if (req.request == "PURGE") {
+        purge_url(req.url);
+        error 200 "Purged";
+    }
+
+    if (!obj.cacheable) {
+        return(pass);
+    }
+}
+
+sub vcl_miss {
+    if (req.request == "PURGE") {
+        error 404 "Not in cache";
+    }
+
+}
+
+sub vcl_fetch {
+    set beresp.grace = 1h;
+    if (!beresp.cacheable) {
+        return(pass);
+    }
+    if (beresp.http.Set-Cookie) {
+        return(pass);
+    }
+    if (beresp.http.Cache-Control ~ "(private|no-cache|no-store)") {
+        return(pass);
+    }
+    if (beresp.http.Authorization && !beresp.http.Cache-Control ~ "public") {
+        return(pass);
+    }
+    
+}
+
+sub vcl_deliver {
+  #debug info stating whether there's a hit or a miss
+  if (obj.hits > 0) {
+    set resp.http.X-Varnish-Cache = "HIT";
+  } else {
+    set resp.http.X-Varnish-Cache = "MISS";
+  }
+  
+  #unset response headers
+  #remove resp.http.X-Varnish;
+  #remove resp.http.X-Varnish-Cookie;
+  #remove resp.http.X-Varnish-server-port;
+  #remove resp.http.X-RAMCache;
+  #remove resp.http.X-Cacheable;
+  #remove resp.http.X-Cache-Rule;
+  #remove resp.http.X-Cache-Operation;
+  #remove resp.http.Via;
+  #remove resp.http.Server;
+  #remove resp.http.X-Mod-Pagespeed;
+}
+
