@@ -54,16 +54,6 @@ sub vcl_recv {
         return(pass);
     }
     
-    # get rid of cookies we do not want to store in the cache
-    if (req.http.Cookie) {
-        set req.http.Cookie = regsuball(req.http.Cookie, "(^|; ) *__utm.=[^;]+;? *", "\1"); # removes all cookies named __utm?
-        set req.http.Cookie = regsuball(req.http.Cookie, "(^|; ) *__atuvc=[^;]+;? *", "\1"); # removes all cookies named __atuvc?
-        set req.http.Cookie = regsuball(req.http.Cookie, "(^|; ) *serverid=[^;]+;? *", "\1"); # removes all haproxy cookies
-
-        if (req.http.Cookie == "") {
-            remove req.http.Cookie;
-        }
-    }
 
     # Don't cache authenticated requests
     if (req.http.Cookie && req.http.Cookie ~ "(_ZopeId|__ac)") {
@@ -74,6 +64,17 @@ sub vcl_recv {
 #                    return(lookup);
 #         }
          return(pass);
+    } else {
+        # get rid of cookies we do not want to store in the cache
+        if (req.http.Cookie) {
+            set req.http.Cookie = regsuball(req.http.Cookie, "(^|; ) *__utm.=[^;]+;? *", "\1"); # removes all cookies named __utm?
+            set req.http.Cookie = regsuball(req.http.Cookie, "(^|; ) *__atuvc=[^;]+;? *", "\1"); # removes all cookies named __atuvc?
+            set req.http.Cookie = regsuball(req.http.Cookie, "(^|; ) *serverid=[^;]+;? *", "\1"); # removes all haproxy cookies
+
+            if (req.http.Cookie == "") {
+                remove req.http.Cookie;
+            }
+        }
     }
 
     remove req.http.Accept-Encoding;
