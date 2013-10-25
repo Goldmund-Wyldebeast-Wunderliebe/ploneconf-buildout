@@ -1,11 +1,9 @@
 global
   log 127.0.0.1 local6
   maxconn  ${haproxy-conf:maxconn}
-  user     ${haproxy-conf:user}
-  group    ${haproxy-conf:group}
   daemon
   nbproc 1
-  stats socket ${buildout:directory}/var/haproxy-socket user ${haproxy-conf:user} level admin
+  stats socket ${buildout:directory}/var/haproxy-socket level admin
 
 defaults
   mode http
