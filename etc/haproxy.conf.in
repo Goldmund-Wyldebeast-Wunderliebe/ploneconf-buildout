@@ -4,7 +4,7 @@ global
   daemon
   nbproc 1
   spread-checks 3
-  stats socket ${buildout:directory}/var/haproxy-socket level admin
+  stats socket ${buildout:directory}/var/run/haproxy-socket level admin
 
 defaults
   mode http
