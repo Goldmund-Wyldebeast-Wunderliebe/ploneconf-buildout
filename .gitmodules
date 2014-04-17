@@ -1,0 +1,3 @@
+[submodule "fabric_lib"]
+        path = fabric_lib
+        url = git@git.gw20e.com:gww/fabric-buildout.git
