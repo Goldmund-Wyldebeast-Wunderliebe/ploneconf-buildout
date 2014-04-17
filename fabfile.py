@@ -4,11 +4,18 @@ This file can be changed to meet the needs of a specific buildout. The Git
 submodule `fabric_lib` has generic functions to provision buildout 
 environments.
 
-Fabric uses SSH to send command to a Appie user. Make sure you create a 
+To active the fabric_lib submodule::
+
+  git submodule init
+  git submodule update
+
+Fabric uses SSH to send commands to a Appie user. Make sure you create a 
 SSH connection to the Appie user. For more info see 'Prepairing Nuffic Appie 
 environments' in the docs (./fabric_lib/README.rst).
 
-Usage: ./bin/fab <fabric command>:<optional parameter>
+Usage:: 
+
+  ./bin/fab <fabric command>:<optional parameter>
 
 """
 from fabric.api import env, settings
