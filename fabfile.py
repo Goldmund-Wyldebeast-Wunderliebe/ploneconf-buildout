@@ -1,16 +1,38 @@
+""" GWW Fabric file for Plone buildouts
+
+This file can be changed to meet the needs of a specific buildout. The Git
+submodule `fabric_lib` has generic functions to provision buildout 
+environments.
+
+Fabric uses SSH to send command to a Appie user. Make sure you create a 
+SSH connection to the Appie user. For more info see 'Prepairing Nuffic Appie 
+environments' in the docs (./fabric_lib/README.rst).
+
+Usage: ./bin/fab <fabric command>:<optional parameter>
+
+"""
 from fabric.api import env, settings
 from fabric.decorators import task, hosts
 
 from fabric_lib.tasks import (test_connection, pull_modules, restart_instances, 
     deploy_buildout, switch_buildout, get_master_slave, prepare_release)
 
-# docs in fabric_lib/README.rst
+##############
+# Appie config
+##############
 
-appie_env = 'sbg'
-env.modules = ('sbg.theme', )
-env.site_url = 'http://localhost:{0}/sbg/'
-env.buildout_uri = 'git@git.gw20e.com:sportbedrijf-groningen/buildout-sbg.git'
-env.acc_host = 'app-{0}-acc@cobain.gw20e.com'.format(appie_env)
+# CHANGE THE FOLLOWING VARIABLE FOR YOUR BUILDOUT / APPIE ENV:
+
+# Name of the appie environment
+appie_env = 'appie-env'  
+# Module which can be updated using git pull
+env.modules = ('project.egg', )  
+# Local url to Plone
+env.site_url = 'http://localhost:{0}/plone_id/'  
+# Git uri to buildout
+env.buildout_uri = 'git@git.gw20e.com:Project/buildout-name.git'  
+# SSH uri's for acc and prd
+env.acc_host = 'app-{0}-acc@cobain.gw20e.com'.format(appie_env)  
 env.prd_hosts = (
     'app-{0}-prd@192.168.5.52'.format(appie_env), 
     'app-{0}-prd@192.168.5.53'.format(appie_env),
