@@ -95,3 +95,9 @@ def prd_switch(server):
 
     with settings(host_string=cluster[server]):
         switch_buildout(tag='master')
+
+@task
+@hosts(env.prd_hosts)
+def prd_update(tag=None):
+    pull_modules(tag=tag)
+        restart_instances()
