@@ -82,27 +82,29 @@ def prd_test():
     get_master_slave()
 
 @task
-def prd_deploy(server):
-    """ Create new buildout in release dir. Usage: ./bin/fab prd_deploy:master OR ./bin/fab prd_deploy:slave
+def prd_deploy(server, tag=None):
+    """ Create new buildout in release dir. 
+    When tag is left empty the current date will be used as tag; ie prd-20140104
     """
 
     cluster = get_master_slave()
 
     with settings(host_string=cluster[server]):
-        deploy_buildout(tag='master')
+        deploy_buildout(tag=tag)
 
 @task
-def prd_switch(server):
-    """ Switch supervisor in current buildout dir to latest buildout. Usage: ./bin/fab prd_deploy:master OR ./bin/fab prd_deploy:slave 
+def prd_switch(server, tag=None):
+    """ Switch supervisor in current buildout dir to latest buildout. 
+    When tag is left empty the current date will be used as tag; ie prd-20140104
     """
     cluster = get_master_slave()
 
     with settings(host_string=cluster[server]):
-        switch_buildout(tag='master')
+        switch_buildout(tag=tag)
 
 @task
 @hosts(env.prd_hosts)
 def prd_update(tag=None):
     """ Pull modules in env.modules and restart instances """
     pull_modules(tag=tag)
-        restart_instances()
+    restart_instances()
