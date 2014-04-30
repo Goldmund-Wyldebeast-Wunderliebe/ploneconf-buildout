@@ -26,7 +26,9 @@ try:
         deploy_buildout, switch_buildout, get_master_slave, prepare_release)
 except ImportError:
     print('To active the fabric_lib submodule run:\n'
-          '  git submodule init && git submodule update')
+          '  git submodule init && git submodule update\n'
+          'For more info read https://intranet.gw20e.com/development/plone-projecten/fabric-deployment'
+    )
     exit(0)
 
 ##############
