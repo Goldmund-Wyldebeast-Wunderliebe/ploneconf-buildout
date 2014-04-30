@@ -21,8 +21,13 @@ Usage::
 from fabric.api import env, settings
 from fabric.decorators import task, hosts
 
-from fabric_lib.tasks import (test_connection, pull_modules, restart_instances, 
-    deploy_buildout, switch_buildout, get_master_slave, prepare_release)
+try:
+    from fabric_lib.tasks import (test_connection, pull_modules, restart_instances,
+        deploy_buildout, switch_buildout, get_master_slave, prepare_release)
+except ImportError:
+    print('To active the fabric_lib submodule run:\n'
+          '  git submodule init && git submodule update')
+    exit(0)
 
 ##############
 # Appie config
