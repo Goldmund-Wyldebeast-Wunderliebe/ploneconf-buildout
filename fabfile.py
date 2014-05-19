@@ -50,7 +50,7 @@ env.site_url = 'http://localhost:{0}/plone_id/'
 # Git uri to buildout
 env.buildout_uri = 'git@git.gw20e.com:Project/buildout-name.git'  
 # SSH uri's for acc and prd
-deploy_info = {
+env.deploy_info = {
     'acc': {
         'hosts': ['app-{0}-acc@cobain.gw20e.com'.format(appie_env)],
     },
