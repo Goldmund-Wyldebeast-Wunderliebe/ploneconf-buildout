@@ -26,7 +26,7 @@ from fabric_lib.helpers import select_servers, test_connection
 
 
 try:
-    from fabric_lib.tasks import (test, update, deploy, switch, copy)
+    from fabric_lib.tasks import (test, update, deploy, switch, copy, prepare_release)
 except ImportError:
     print('To active the fabric_lib submodule run:\n'
           '  git submodule init && git submodule update\n'
