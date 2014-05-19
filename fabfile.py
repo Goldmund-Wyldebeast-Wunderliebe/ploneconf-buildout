@@ -69,4 +69,3 @@ deploy_info = {
 env.forward_agent = True
 env.always_use_pty = False
 env.linewise = True
-env.shell = '/bin/dash -e -c'
