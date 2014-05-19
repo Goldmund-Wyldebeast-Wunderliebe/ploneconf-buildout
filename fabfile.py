@@ -68,7 +68,6 @@ deploy_info = {
 env.forward_agent = True
 env.always_use_pty = False
 env.linewise = True
-env.shell = '/bin/dash -e -c'
 
 
 #############
@@ -124,4 +123,3 @@ def deploy(tag=None):
 def switch(tag=None):
     """ Switch supervisor in current buildout dir to latest buildout """
     switch_buildout(tag=tag)
-
