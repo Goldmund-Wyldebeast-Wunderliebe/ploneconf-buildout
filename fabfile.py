@@ -4,13 +4,13 @@ This file can be changed to meet the needs of a specific buildout. The Git
 submodule `fabric_lib` has generic functions to provision buildout
 environments.
 
-To active the fabric_lib submodule::
+To activate the fabric_lib submodule::
 
   git submodule init
   git submodule update
 
-Fabric uses SSH to send commands to a Appie user. Make sure you create a
-SSH connection to the Appie user. For more info see 'Preparing Nuffic Appie
+Fabric uses SSH to send commands to a Appie user. Make sure you create an
+SSH connection to the Appie user. For more info see 'Preparing Appie
 environments' in the docs (./fabric_lib/README.rst).
 
 Usage::
@@ -26,10 +26,10 @@ from fabric.api import env
 try:
     from fabric_lib.tasks import (
             check_cluster, test, update, deploy, switch, copy,
-            prepare_release, pull_modules,
+            prepare_release,
             )
 except ImportError:
-    print('To active the fabric_lib submodule run:\n'
+    print('To activate the fabric_lib submodule run:\n'
           '  git submodule init && git submodule update\n'
           'For more info read https://intranet.gw20e.com/development/plone-projecten/fabric-deployment'
     )
