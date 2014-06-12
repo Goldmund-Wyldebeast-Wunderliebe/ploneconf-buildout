@@ -55,8 +55,7 @@ env.site_url = 'http://localhost:{0}/plone_id/'  # Local url to Plone
 env.buildout_uri = git.Repo().remote().url  # Git uri to buildout
 env.deploy_info = {  # SSH uri's for acc and prd
     'acc': {
-        #'hosts': ['app-{0}-acc@cobain.gw20e.com'.format(env.app)],
-        'hosts': ['app-{0}-acc@localhost'.format(env.app)],
+        'hosts': ['app-{0}-acc@cobain.gw20e.com'.format(env.app)],
         'ports': {
             'haproxy': 21895,
             'instances': {'instance0': 8195},
