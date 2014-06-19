@@ -1,5 +1,6 @@
 .*
 ???-settings.cfg
+localfabfile.py
 develop-eggs/
 downloads/
 eggs/

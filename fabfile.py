@@ -111,3 +111,7 @@ env.deploy_info = {  # SSH uri's for acc and prd
     },
 }
 
+try:
+   import localfabfile
+except ImportError:
+    pass
