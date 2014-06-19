@@ -53,63 +53,13 @@ env.app = 'fabric'  # Name of the appie environment
 env.modules = ('project.egg', )  # Module which can be updated using git pull
 env.site_url = 'http://localhost:{0}/plone_id/'  # Local url to Plone
 env.buildout_uri = git.Repo().remote().url  # Git uri to buildout
-env.deploy_info = {  # SSH uri's for acc and prd
-    'acc': {
-        'hosts': ['app-{0}-acc@cobain.gw20e.com'.format(env.app)],
-        'ports': {
-            'haproxy': 21895,
-            'instances': {'instance0': 8195},
-            'zeo': 18195,
-        },
-        'ipaddresses': {
-            'flying-ip': '127.0.0.1',
-            'ip-one': '127.0.0.1',
-        },
-        'credentials': {
-            'username': 'app-{}-acc'.format(env.app),
-            'password': 'keuteltje14',
-        },
-        'zeo-base': '/opt/APPS/{}/acc/db'.format(env.app),
-        'buildout-parts': {
-            'sentry': {
-                'dsn': 'https://sentry_api_key:example@sentry.gw20e.com/xx',
-                'level': 'ERROR',
-            },
-        },
-    },
-    'prd': {
-        'hosts': [
-            'app-{0}-prd@192.168.5.52'.format(env.app),
-            'app-{0}-prd@192.168.5.53'.format(env.app),
-        ],
-        'ports': {
-            'varnish': 48450,
-            'haproxy': 28450,
-            'instances': {'instance{}'.format(i): 8450+i for i in range(4)},
-            'zeo': 18450,
-        },
-        'ipaddresses': {
-            'flying-ip': '91.194.224.154',
-            'ip-one': '192.168.5.52', # Madras
-            'ip-two': '192.168.5.53', # Saag
-        },
-        'credentials': {
-            'username': 'app-{}-prd'.format(env.app),
-            'password': 'keuteltje14',
-        },
-        'zeo-base': '/data1/APPS/fabric/prd',
-        'buildout-parts': {
-            'sentry': {
-                'dsn': 'https://sentry_api_key:example@sentry.gw20e.com/xx',
-                'level': 'ERROR',
-            },
-            'supervisor': {
-                'user': 'admin',
-                'password': 'ev9OpeeT',
-            },
-        },
-    },
-}
+
+import deployment
+env.deploy_info = {
+        k:v
+        for k, v in deployment.__dict__.items()
+        if not k.startswith('_')
+        }
 
 try:
    import localfabfile
