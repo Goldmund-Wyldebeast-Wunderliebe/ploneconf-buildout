@@ -46,6 +46,7 @@ prd = dict(
         'ports': {'instance{}'.format(i): 8450+i for i in range(4)},
         'ipaddresses': { 'madras': '192.168.5.52', 'saag': '192.168.5.53', },
     },
+    site_id = 'mysite',
     credentials= { 'username': 'app-fabric-prd', 'password': 'keuteltje14', },
     sentry= {
         'dsn': 'https://sentry_api_key:example@sentry.gw20e.com/xx',

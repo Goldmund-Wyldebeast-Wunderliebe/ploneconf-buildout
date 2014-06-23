@@ -51,7 +51,6 @@ env.linewise = True
 ##############
 env.app = 'fabric'  # Name of the appie environment
 env.modules = ('project.egg', )  # Module which can be updated using git pull
-env.site_url = 'http://localhost:{0}/plone_id/'  # Local url to Plone
 env.buildout_uri = git.Repo().remote().url  # Git uri to buildout
 
 import deployment
