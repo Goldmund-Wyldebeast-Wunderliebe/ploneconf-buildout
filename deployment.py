@@ -4,6 +4,7 @@ tst = dict(
     buildout= 'buildout-tst',
     instances= { 'ports': { 'instance0': 8194, }, },
     credentials= { 'username': 'app-fabric-tst', 'password': 'keuteltje14', },
+    site_id = 'mysite',
     webserver= 'apache2',
     sitename= 'tst.example.com',
 )
@@ -11,13 +12,14 @@ tst = dict(
 acc = dict(
     hosts= ['app-fabric-acc@cobain.gw20e.com'],
     buildout= 'buildout-acc',
-    haproxy= { 'port': 21895 },
+    haproxy= { 'port': 28195 },
     zeo= { 'port': 18195, 'base': '/opt/APPS/fabric/acc/db', },
     instances= {
         'ports': { 'instance0': 8195, 'instance1': 8196, },
         'ipaddresses': { 'localhost': '127.0.0.1', },
     },
     credentials= { 'username': 'app-fabric-acc', 'password': 'keuteltje14', },
+    site_id = 'mysite',
     webserver= 'apache2',
     sitename= 'acc.example.com',
 )
@@ -34,6 +36,8 @@ prd = dict(
         'app-fabric-prd@192.168.5.53',
     ],
     buildout= _datestamped('releases/%Y-%m-%d'),
+    current_link = 'current',
+    auto_switch = False,
     zeo= {
         'ip': '91.194.224.154',
         'port': 18450,
@@ -47,17 +51,20 @@ prd = dict(
         'dsn': 'https://sentry_api_key:example@sentry.gw20e.com/xx',
         'level': 'ERROR',
     },
+    site_id = 'mysite',
 )
 
 prdbe = prd.copy()
 prdbe.update(
     buildout= 'releases/backend',
+    current_link = None,
     zeo = dict(base= '/data1/APPS/fabric/prd', **prd['zeo']),
 )
 
 prdfe = prd.copy()
 prdfe.update(
     buildout= 'releases/frontend',
+    current_link = None,
     varnish= { 'port': 48450 },
     haproxy= { 'port': 28450 },
     webserver= 'apache2',
