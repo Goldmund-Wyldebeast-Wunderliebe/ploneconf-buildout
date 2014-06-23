@@ -51,24 +51,22 @@ prd = dict(
         'dsn': 'https://sentry_api_key:example@sentry.gw20e.com/xx',
         'level': 'ERROR',
     },
+)
+
+prdfe = dict(
+    hosts = prd['hosts'],
+    buildout= 'releases/frontend',
+    varnish= { 'port': 48450 },
+    haproxy= { 'port': 28450, 'instances': prd['instances'], },
+    webserver= 'apache2',
+    sitename= 'www.example.com',
     site_id = 'mysite',
 )
 
-prdbe = prd.copy()
-prdbe.update(
+prdbe = dict(
+    hosts = prd['hosts'],
     buildout= 'releases/backend',
-    current_link = None,
     zeo = dict(base= '/data1/APPS/fabric/prd', **prd['zeo']),
-)
-
-prdfe = prd.copy()
-prdfe.update(
-    buildout= 'releases/frontend',
-    current_link = None,
-    varnish= { 'port': 48450 },
-    haproxy= { 'port': 28450 },
-    webserver= 'apache2',
-    sitename= 'www.example.com',
 )
 
 
