@@ -50,7 +50,6 @@ env.linewise = True
 # CHANGE THE FOLLOWING VARIABLES FOR YOUR BUILDOUT / APPIE ENV:
 ##############
 env.app = 'fabric'  # Name of the appie environment
-env.modules = ('project.egg', )  # Module which can be updated using git pull
 env.buildout_uri = git.Repo().remote().url  # Git uri to buildout
 
 import deployment

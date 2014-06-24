@@ -2,6 +2,9 @@
 tst = dict(
     hosts= ['app-fabric-tst@cobain.gw20e.com'],
     buildout= 'buildout-tst',
+    modules = {
+        'gww.imprint': 'git git@git.gw20e.com:gww/gww-imprint.git',
+    },
     instances= { 'ports': { 'instance0': 8194, }, },
     credentials= { 'username': 'app-fabric-tst', 'password': 'keuteltje14', },
     site_id = 'mysite',
@@ -71,5 +74,5 @@ prdbe = dict(
 )
 
 
-default = tst
+default = 'tst'
 
