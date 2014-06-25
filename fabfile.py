@@ -20,6 +20,7 @@ Usage::
 """
 
 import git
+import traceback
 from fabric.api import env
 
 
@@ -30,8 +31,8 @@ except ImportError:
           '  git submodule init && git submodule update\n'
           'For more info read https://intranet.gw20e.com/development/plone-projecten/fabric-deployment'
     )
-    import fabric_lib  # Just to show the real error message
-    exit(0)
+    traceback.print_exc()
+    exit(1)
 
 
 #############
