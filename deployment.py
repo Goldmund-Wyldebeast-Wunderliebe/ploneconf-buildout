@@ -9,7 +9,7 @@ tst = dict(
     credentials= { 'username': 'app-fabric-tst', 'password': 'keuteltje14', },
     site_id = 'mysite',
     webserver= 'apache2',
-    sitename= 'tst.example.com',
+    sitename= 'fabric-tst.gw20e.com',
 )
 
 acc = dict(
@@ -24,7 +24,7 @@ acc = dict(
     credentials= { 'username': 'app-fabric-acc', 'password': 'keuteltje14', },
     site_id = 'mysite',
     webserver= 'apache2',
-    sitename= 'acc.example.com',
+    sitename= 'fabric-acc.gw20e.com',
 )
 
 
@@ -63,7 +63,7 @@ prdfe = dict(
     varnish= { 'port': 48450 },
     haproxy= { 'port': 28450, 'instances': prd['instances'], },
     webserver= 'apache2',
-    sitename= 'www.example.com',
+    sitename= 'fabric-www.gw20e.com',
     site_id = 'mysite',
 )
 
