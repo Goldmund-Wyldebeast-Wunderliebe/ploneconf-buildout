@@ -1,6 +1,6 @@
 
 tst = dict(
-    hosts= ['app-fabric-tst@cobain.gw20e.com'],
+    hosts= ['app-fabric-acc@cobain.gw20e.com'],
     buildout= 'buildout-tst',
     modules = {
         'gww.imprint': 'git git@git.gw20e.com:gww/gww-imprint.git',
