@@ -19,9 +19,14 @@ tst = dict(
     modules = {
         'gww.imprint': 'git git@git.gw20e.com:gww/gww-imprint.git',
     },
+    zeo= {
+        'ip': _flying_ip,
+        'port': _base_port + 10001,
+        'base': '/opt/APPS/%s/tst/db' % _env_name,
+    },
     instances= { 'ports': { 'instance0': _base_port+1, }, },
     credentials= { 'username': 'admin', 'password': 'secret', },
-    site_id = 'mysite',
+    site_id = 'intranet',
     webserver= 'apache2',
     sitename= '%s-tst.gw20e.com' % _env_name,
 )
@@ -31,6 +36,7 @@ acc = dict(
     buildout= 'buildout-acc',
     haproxy= { 'port': _base_port + 20002 },
     zeo= {
+        'ip': _flying_ip,
         'port': _base_port + 10002,
         'base': '/opt/APPS/%s/acc/db' % _env_name,
     },
