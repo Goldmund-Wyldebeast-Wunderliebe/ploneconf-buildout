@@ -11,9 +11,6 @@ _base_port = 8210
 #     zeo uses                 +10004
 #     haproxy uses             +20004
 #     varnish uses             +40004
-_base_modules = {
-
-}
 
 tst = dict(
     hosts= ['app-%s-tst@%s' % (_env_name, s) for s in _servers.values()],
@@ -22,7 +19,7 @@ tst = dict(
         'gww.imprint': 'git git@git.gw20e.com:gww/gww-imprint.git',
         'drogevoeten.base': 'git git@git.gw20e.com:waterschappen/drogevoeten-base.git',
         'hhd.theme.intranet': 'git git@git.gw20e.com:waterschappen/hhd-theme-intranet.git',
-        'hhd.theme.intranet': 'git git@git.gw20e.com:waterschappen/hhd-theme-intranet.git',
+        'hhd.theme.internet': 'git git@git.gw20e.com:waterschappen/hhd-theme-internet.git',
     },
     third_party_modules = {
         'collective.autopublishing': 'git https://github.com/collective/collective.autopublishing.git',
