@@ -4,6 +4,8 @@ _servers = {'dhansak': '192.168.3.44', 'patia': '192.168.3.45'}
 
 _base_port = 8210
 # tst instances use _base_port +1
+#     zeo uses                 +10001
+#     haproxy uses             +10002
 # acc instances use _base_port +2, +3 (instances)
 #     zeo uses                 +10002
 #     haproxy uses             +20002
@@ -12,27 +14,34 @@ _base_port = 8210
 #     haproxy uses             +20004
 #     varnish uses             +40004
 
+_modules = {
+    'gww.imprint': 'git git@git.gw20e.com:gww/gww-imprint.git',
+    'drogevoeten.base': 'git git@git.gw20e.com:waterschappen/drogevoeten-base.git',
+    'hhd.theme.intranet': 'git git@git.gw20e.com:waterschappen/hhd-theme-intranet.git',
+    'hhd.theme.internet': 'git git@git.gw20e.com:waterschappen/hhd-theme-internet.git',
+}
+
+_third_party_modules = {
+    'collective.autopublishing': 'git https://github.com/collective/collective.autopublishing.git',
+    'collective.complexrecordsproxy': 'git https://github.com/collective/collective.complexrecordsproxy.git',
+    'Products.EasyNewsletter': 'git https://github.com/Goldmund-Wyldebeast-Wunderliebe/Products.EasyNewsletter.git'
+}
+
 tst = dict(
     hosts= ['app-%s-tst@%s' % (_env_name, s) for s in _servers.values()],
     buildout= 'buildout-tst',
     haproxy= { 'port': _base_port + 10002 },
-    modules = {
-        'gww.imprint': 'git git@git.gw20e.com:gww/gww-imprint.git',
-        'drogevoeten.base': 'git git@git.gw20e.com:waterschappen/drogevoeten-base.git',
-        'hhd.theme.intranet': 'git git@git.gw20e.com:waterschappen/hhd-theme-intranet.git',
-        'hhd.theme.internet': 'git git@git.gw20e.com:waterschappen/hhd-theme-internet.git',
-    },
-    third_party_modules = {
-        'collective.autopublishing': 'git https://github.com/collective/collective.autopublishing.git',
-        'collective.complexrecordsproxy': 'git https://github.com/collective/collective.complexrecordsproxy.git',
-        'Products.EasyNewsletter': 'git https://github.com/Goldmund-Wyldebeast-Wunderliebe/Products.EasyNewsletter.git'
-    },
+    modules = _modules,
+    third_party_modules = _third_party_modules,
     zeo= {
         'ip': _flying_ip,
         'port': _base_port + 10001,
         'base': '/opt/APPS/%s/tst/db' % _env_name,
     },
-    instances= { 'ports': { 'instance0': _base_port+1, }, },
+    instances= {
+        'ports': { 'instance0': _base_port+1, },
+        'ipaddresses': _servers,
+    },
     credentials= { 'username': 'admin', 'password': 'secret', },
     site_id = 'intranet',
     webserver= 'apache2',
@@ -50,7 +59,7 @@ acc = dict(
     },
     instances= {
         'ports': { 'instance0': _base_port + 2, 'instance1': _base_port + 3, },
-        'ipaddresses': { 'localhost': '127.0.0.1', },
+        'ipaddresses': _servers,
     },
     credentials= { 'username': 'admin', 'password': 'secret', },
     site_id = 'mysite',
