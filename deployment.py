@@ -11,13 +11,23 @@ _base_port = 8210
 #     zeo uses                 +10004
 #     haproxy uses             +20004
 #     varnish uses             +40004
+_base_modules = {
 
+}
 
 tst = dict(
     hosts= ['app-%s-tst@%s' % (_env_name, s) for s in _servers.values()],
     buildout= 'buildout-tst',
     modules = {
         'gww.imprint': 'git git@git.gw20e.com:gww/gww-imprint.git',
+        'drogevoeten.base': 'git git@git.gw20e.com:waterschappen/drogevoeten-base.git',
+        'hhd.theme.intranet': 'git git@git.gw20e.com:waterschappen/hhd-theme-intranet.git',
+        'hhd.theme.intranet': 'git git@git.gw20e.com:waterschappen/hhd-theme-intranet.git',
+    },
+    third_party_modules = {
+        'collective.autopublishing': 'git https://github.com/collective/collective.autopublishing.git',
+        'collective.complexrecordsproxy': 'git https://github.com/collective/collective.complexrecordsproxy.git',
+        'Products.EasyNewsletter': 'git https://github.com/Goldmund-Wyldebeast-Wunderliebe/Products.EasyNewsletter.git'
     },
     zeo= {
         'ip': _flying_ip,
