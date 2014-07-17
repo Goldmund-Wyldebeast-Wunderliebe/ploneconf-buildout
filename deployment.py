@@ -15,6 +15,7 @@ _base_port = 8210
 tst = dict(
     hosts= ['app-%s-tst@%s' % (_env_name, s) for s in _servers.values()],
     buildout= 'buildout-tst',
+    haproxy= { 'port': _base_port + 10002 },
     modules = {
         'gww.imprint': 'git git@git.gw20e.com:gww/gww-imprint.git',
         'drogevoeten.base': 'git git@git.gw20e.com:waterschappen/drogevoeten-base.git',
