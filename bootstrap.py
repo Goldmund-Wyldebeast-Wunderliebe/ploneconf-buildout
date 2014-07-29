@@ -60,6 +60,12 @@ parser.add_option("-f", "--find-links",
 
 options, args = parser.parse_args()
 
+# GWW custom bootstrapping, checkout Git submoodules 
+####################################################
+from subprocess import call
+call(["git", "submodule", "update"])
+call(["git", "submodule", "init"])
+
 ######################################################################
 # load/install setuptools
 
@@ -169,6 +175,3 @@ if options.config_file is not None:
 zc.buildout.buildout.main(args)
 shutil.rmtree(tmpeggs)
 
-# Custom bootstrapping, checkout Git submoodules 
-from subprocess import call
-call(["git submodule init && git submodule update"])
