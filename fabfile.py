@@ -57,6 +57,12 @@ env.deploy_info = {
         if not k.startswith('_')
         }
 
+
+try:
+   from base import fabfile
+except ImportError:
+    pass
+
 try:
    import localfabfile
 except ImportError:
