@@ -15,6 +15,11 @@ _base_port = 8210
 #     haproxy uses             +20004
 #     varnish uses             +40004
 
+_modules.update({
+    'hhd.theme.intranet': 'git git@git.gw20e.com:waterschappen/hhd-theme-intranet.git',
+    'hhd.theme.internet': 'git git@git.gw20e.com:waterschappen/hhd-theme-internet.git',
+}§)
+
 tst = dict(
     hosts= ['app-%s-tst@%s' % (_env_name, s) for s in _servers.values()],
     buildout= 'buildout-tst',
