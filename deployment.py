@@ -1,6 +1,7 @@
 _env_name = 'hhd'
 
-from base.deployment import *
+from base.deployment import (_flying_ip, _servers, _modules, _third_party_modules,
+    templates)
 
 _base_port = 8210
 # tst instances use _base_port +1
