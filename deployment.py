@@ -1,6 +1,6 @@
 _env_name = 'hhd'
-_flying_ip = '91.194.224.146'
-_servers = {'dhansak': '192.168.3.44', 'patia': '192.168.3.45'}
+
+from base.deployment import *
 
 _base_port = 8210
 # tst instances use _base_port +1
@@ -13,19 +13,6 @@ _base_port = 8210
 #     zeo uses                 +10004
 #     haproxy uses             +20004
 #     varnish uses             +40004
-
-_modules = {
-    'gww.imprint': 'git git@git.gw20e.com:gww/gww-imprint.git',
-    'drogevoeten.base': 'git git@git.gw20e.com:waterschappen/drogevoeten-base.git',
-    'hhd.theme.intranet': 'git git@git.gw20e.com:waterschappen/hhd-theme-intranet.git',
-    'hhd.theme.internet': 'git git@git.gw20e.com:waterschappen/hhd-theme-internet.git',
-}
-
-_third_party_modules = {
-    'collective.autopublishing': 'git https://github.com/collective/collective.autopublishing.git',
-    'collective.complexrecordsproxy': 'git https://github.com/collective/collective.complexrecordsproxy.git',
-    'Products.EasyNewsletter': 'git https://github.com/Goldmund-Wyldebeast-Wunderliebe/Products.EasyNewsletter.git'
-}
 
 tst = dict(
     hosts= ['app-%s-tst@%s' % (_env_name, s) for s in _servers.values()],
@@ -112,4 +99,3 @@ prdbe = dict(
 
 
 default = 'tst'
-
