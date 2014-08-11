@@ -47,7 +47,7 @@ env.linewise = True
 # Appie config
 # CHANGE THE FOLLOWING VARIABLES FOR YOUR BUILDOUT / APPIE ENV:
 ##############
-env.app = 'fabric'  # Name of the appie environment
+env.app = 'hhd'  # Name of the appie environment
 env.buildout_uri = git.Repo().remote().url  # Git uri to buildout
 
 import deployment
