@@ -85,7 +85,7 @@ prd = dict(
     site_id = 'mysite',
     credentials= { 'username': 'admin', 'password': 'secret', },
     sentry= {
-        'dsn': 'https://sentry_api_key:example@sentry.gw20e.com/xx',
+        'dsn': 'https://247af3e04f3b48798d51da491eab784a:24ebe23768d04bd3a4d993c47730d9a1@sentry.gw20e.com/31',
         'level': 'ERROR',
     },
 )
