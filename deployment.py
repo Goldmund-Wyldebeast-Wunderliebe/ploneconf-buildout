@@ -41,7 +41,7 @@ tst = dict(
     sitename= '%s-tst.gw20e.com' % _env_name,
     clockserver_user= 'clocktestuser',
     clockserver_password= 'clocktestpassword',
-    sitetypes= ('intranet', 'internet'),
+    sitetypes= ('hhd_intranet', 'hhd_internet'),
 )
 
 acc = dict(
