@@ -34,7 +34,7 @@ tst = dict(
         'ipaddresses': _servers,
     },
     credentials={'username': 'admin', 'password': 'secret', },
-    __site_id=_site_id,
+    site_id=_site_id,
     webserver='apache2',
     sitename='%s-tst.gw20e.com' % _env_name,
     remote_configs={'clockusers': 'clockuser.cfg'},
@@ -56,7 +56,7 @@ acc = dict(
         'ipaddresses': _servers,
     },
     credentials={'username': 'admin', 'password': 'secret', },
-    _site_id=_site_id,
+    site_id=_site_id,
     webserver='apache2',
     sitename='%s-acc.gw20e.com' % _env_name,
     remote_configs={'clockusers': 'clockuser.cfg'},
@@ -77,7 +77,7 @@ prd = dict(
         'ports': {'instance{}'.format(i): _base_port + 5 + i for i in range(4)},
         'ipaddresses': _servers,
     },
-    _site_id=_site_id,
+    site_id=_site_id,
     credentials={'username': 'admin', 'password': 'secret', },
     remote_configs={'clockusers': 'clockuser.cfg'},
     sentry={
@@ -93,7 +93,7 @@ prdfe = dict(
     haproxy={'port': _base_port + 40002, 'instances': prd['instances'], },
     webserver='apache2',
     sitename='%s-prd.gw20e.com' % _env_name,
-    _site_id=prd['_site_id'],
+    site_id=prd['_site_id'],
 )
 
 prdbe = dict(
