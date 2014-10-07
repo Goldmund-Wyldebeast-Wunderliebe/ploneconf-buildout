@@ -88,13 +88,13 @@ attributes are used, change the attributes to your needs.
 Deploy to remote servers
 ------------------------
 
-Prequisites:
+Prerequisites:
 
  * The attributes in ``deployment.py`` are changed to your the needs of your environment
  * At least one user account with SSH access on the remote server(s), ie. app-example-prd
  * Fabric to deploy, it is included in this buildout in the bin directory
 
- Optional:
+Optional:
 
  * Configure `SSH Agent Forwarding`_, forwarding can be used if you have private
    repositories. It allows you to use your local SSH keys.
@@ -109,6 +109,7 @@ The layer parameter can be omitted because the test environment is the default::
 
 Each server should return an output similar to the one below::
 
+    # ./bin/fab test
     app-example-tst@192.168.3.45
     Testing example tst connection for app-example-tst@192.168.3.45
     [app-fabric-tst@192.168.3.45] run: hostname ; whoami ; pwd
@@ -124,6 +125,6 @@ the server(s) defined in the ``_servers`` deployment attribute.
 Further reading is in the fabric buildout library `fabric_lib`_.
 
 .. _`SSH Agent Forwarding`: https://developer.github.com/guides/using-ssh-agent-forwarding/
-.._`fabric_lib`: http://TODO/
+.. _`fabric_lib`: http://TODO/
 
 
