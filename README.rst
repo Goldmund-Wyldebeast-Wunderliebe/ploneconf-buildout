@@ -99,15 +99,15 @@ Prequisites:
  * Configure `SSH Agent Forwarding`_, forwarding can be used if you have private
    repositories. It allows you to use your local SSH keys.
 
-First test if we have a SSH connection to the test environment on the server using:
+First test if we have a SSH connection to the test environment on the server using::
 
     ./bin/fab test:layer=tst
 
-The layer parameter can be omitted because the test environment is the default:
+The layer parameter can be omitted because the test environment is the default::
 
     ./bin/fab test
 
-Each server should return an output similar to the one below:
+Each server should return an output similar to the one below::
 
     app-example-tst@192.168.3.45
     Testing example tst connection for app-example-tst@192.168.3.45
