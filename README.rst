@@ -129,7 +129,7 @@ the server(s) defined in the ``_servers`` deployment attribute.
 Further reading is in the fabric buildout library `fabric_lib`_.
 
 .. _`SSH Agent Forwarding`: https://developer.github.com/guides/using-ssh-agent-forwarding/
-.. _`fabric_lib`: http://TODO/
+.. _`fabric_lib`: https://github.com/Goldmund-Wyldebeast-Wunderliebe/gww.buildout-fabric
 
 Further usage
 -------------
