@@ -40,7 +40,7 @@ The configure remote deployment a server with SSH access is needed. In this
 example we will deploy a Plone buildout to a cluster.
 
 In ``deployment.py`` the config for the remote is stored. The following
-attributes are used:
+attributes are used, change the attributes to your needs.
 
 ``_base_port``
     This number is used to define port numbers for Plone, ZODB server, Varnish
@@ -52,8 +52,20 @@ attributes are used:
     make sure only lower case is used and avoid white spaces.
 
 ``_site_id``
-    This is the id of the Plone site. It is
+    This is the id of the Plone site. It is used in the config for the webserver.
 
+``_flying_ip``
+    The flying IP address of a cluster, omit this one if no cluster setup is used.
+
+``_servers``
+    Configure one ore more servers which are used for remote deployment. Each
+    server has a name and a IP address or a domain name.
+
+``_modules``
+    Python eggs or Plone modules which are in own maintenance #TODO improve
+
+``_third_party_modules``
+    List third party modules which are used from source #TODO improve
 
 
 Deploy to remote servers
