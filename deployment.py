@@ -6,7 +6,7 @@ _flying_ip = '91.194.224.146'
 _servers = {'dhansak': '192.168.3.44', 'patia': '192.168.3.45'}
 
 _modules = {
-    'gww.imprint': 'git git@git.gw20e.com:gww/gww-imprint.git',
+    # 'gww.imprint': 'git git@git.gw20e.com:gww/gww-imprint.git',
 }
 
 _third_party_modules = {
