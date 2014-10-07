@@ -1,5 +1,6 @@
-Buildout
-========
+===================================
+GWW Buildout with Fabric deployment
+===================================
 
 rationale (TODO)
 
@@ -16,7 +17,7 @@ Seperated environments
 ^^^^^^^^^^^^^^^^^^^^^^
 Each environment on testing, acceptance or production has it's own user
 account. The username of each account contains the name of the environment
- and the name of the env (tst, acc, prd).
+and the name of the env (tst, acc, prd).
 
 For example; if we have an environment with the name example, three system
 users are needed: app-example-tst, app-example-acc and app-example-prd.
@@ -30,7 +31,7 @@ Getting started
 ---------------
 
 Initial setup
-~~~~~~~~~~~~~
+^^^^^^^^^^^^^
 First checkout the library/module which contains the fabric functionality::
 
     git submodule init
