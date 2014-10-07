@@ -135,3 +135,40 @@ Further usage
 -------------
 
 Migrating from existing buildout templates with DTAP-config. TODO
+
+Troubleshooting
+---------------
+
+Plone dependencies
+^^^^^^^^^^^^^^^^^^
+
+ Make sure you've installed the depencencies which are required by Plone.
+ Use `install.plone.dependencies`_ to install required packages.
+
+ .. _`https://github.com/collective/install.plone.dependencies`: `install.plone.dependencies`_
+
+Readline error
+^^^^^^^^^^^^^^
+
+When readline is failing because of the following error::
+
+    Getting distribution for 'readline'.
+    /usr/bin/ld: cannot find -lncurses
+    collect2: error: ld returned 1 exit status
+    error: Setup script exited with error: command 'gcc' failed with exit status 1
+
+Install the ``libncurses5-dev`` package::
+
+    sudo apt-get install libncurses5-dev
+
+Setuptools error
+^^^^^^^^^^^^^^^^
+
+When bootstrap.py is failing because of following error::
+
+    pkg_resources.DistributionNotFound: setuptools>=0.7
+
+Update setuptools using::
+
+    . ./bin/activate  # Make sure we are in a virtual env
+    pip install -U setuptools
