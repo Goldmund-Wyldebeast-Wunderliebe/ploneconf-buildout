@@ -8,8 +8,23 @@ How to use this buildout
 This buildout can be used as a local development buildout and using
 fabric remote servers can be controlled to deploy buildouts.
 
-Appie concept
--------------
+
+Deployment from local buildout
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Seperated environments
+^^^^^^^^^^^^^^^^^^^^^^
+Each environment on testing, acceptance or production has it's own user
+account. The username of each account contains the name of the environment
+ and the name of the env (tst, acc, prd).
+
+For example; if we have an environment with the name example, three system
+users are needed: app-example-tst, app-example-acc and app-example-prd.
+
+A Puppet module called `puppet-appie`_ can be used to automate the setup of
+the accounts.
+
+.. _`puppet-appie`: https://github.com/Goldmund-Wyldebeast-Wunderliebe/puppet-appie
 
 Initial setup
 -------------
@@ -28,7 +43,7 @@ and run buildout::
     python bootstrap.py -c buildout-dvl.cfg
     ./bin/buildout -c buildout-dvl.cfg
 
- Start the zeo server and run the instance in the foreground::
+Start the zeo server and run the instance in the foreground::
 
     ./bin/zeo start
     ./bin/instance fg
@@ -67,8 +82,48 @@ attributes are used, change the attributes to your needs.
 ``_third_party_modules``
     List third party modules which are used from source #TODO improve
 
+``default``
+    Sets the default enviroment, this is tst (test environment) by default.
 
 Deploy to remote servers
 ------------------------
+
+Prequisites:
+
+ * The attributes in ``deployment.py`` are changed to your the needs of your environment
+ * At least one user account with SSH access on the remote server(s), ie. app-example-prd
+ * Fabric to deploy, it is included in this buildout in the bin directory
+
+ Optional:
+
+ * Configure `SSH Agent Forwarding`_, forwarding can be used if you have private
+   repositories. It allows you to use your local SSH keys.
+
+First test if we have a SSH connection to the test environment on the server using:
+
+    ./bin/fab test:layer=tst
+
+The layer parameter can be omitted because the test environment is the default:
+
+    ./bin/fab test
+
+Each server should return an output similar to the one below:
+
+    app-example-tst@192.168.3.45
+    Testing example tst connection for app-example-tst@192.168.3.45
+    [app-fabric-tst@192.168.3.45] run: hostname ; whoami ; pwd
+    [app-fabric-tst@192.168.3.45] out: patia
+    [app-fabric-tst@192.168.3.45] out: app-example-tst
+    [app-fabric-tst@192.168.3.45] out: /opt/APPS/example/tst
+
+To deploy a buildout run the following command. A deployment will run buildout on
+the server(s) defined in the ``_servers`` deployment attribute.
+
+    ./bin/fab deploy
+
+Further reading is in the fabric buildout library `fabric_lib`_.
+
+.. _`SSH Agent Forwarding`: https://developer.github.com/guides/using-ssh-agent-forwarding/
+.._`fabric_lib`: http://TODO/
 
 

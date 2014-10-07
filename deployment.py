@@ -10,7 +10,7 @@ _modules = {
 }
 
 _third_party_modules = {
-    'collective.autopublishing': 'git https://github.com/collective/collective.autopublishing.git',
+    # 'collective.autopublishing': 'git https://github.com/collective/collective.autopublishing.git',
 }
 
 def _datestamped(fmt):
@@ -93,7 +93,7 @@ prdfe = dict(
     haproxy={'port': _base_port + 40002, 'instances': prd['instances'], },
     webserver='apache2',
     sitename='%s-prd.gw20e.com' % _env_name,
-    site_id=prd['_site_id'],
+    site_id=prd['site_id'],
 )
 
 prdbe = dict(
