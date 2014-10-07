@@ -1,7 +1,7 @@
 Buildout
 ========
 
-rationale
+rationale (TODO)
 
 How to use this buildout
 ------------------------
@@ -26,8 +26,11 @@ the accounts.
 
 .. _`puppet-appie`: https://github.com/Goldmund-Wyldebeast-Wunderliebe/puppet-appie
 
+Getting started
+---------------
+
 Initial setup
--------------
+~~~~~~~~~~~~~
 First checkout the library/module which contains the fabric functionality::
 
     git submodule init
@@ -49,7 +52,7 @@ Start the zeo server and run the instance in the foreground::
     ./bin/instance fg
 
 Configuring remote deployment
------------------------------
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 The configure remote deployment a server with SSH access is needed. In this
 example we will deploy a Plone buildout to a cluster.
@@ -86,7 +89,7 @@ attributes are used, change the attributes to your needs.
     Sets the default enviroment, this is tst (test environment) by default.
 
 Deploy to remote servers
-------------------------
+~~~~~~~~~~~~~~~~~~~~~~~~
 
 Prerequisites:
 
@@ -127,4 +130,7 @@ Further reading is in the fabric buildout library `fabric_lib`_.
 .. _`SSH Agent Forwarding`: https://developer.github.com/guides/using-ssh-agent-forwarding/
 .. _`fabric_lib`: http://TODO/
 
+Further usage
+-------------
 
+Migrating from existing buildout templates with DTAP-config. TODO
