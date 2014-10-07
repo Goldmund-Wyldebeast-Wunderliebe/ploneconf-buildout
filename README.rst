@@ -42,7 +42,7 @@ several files.
 Create a virtual environment, bootstrap the buildout used for development
 and run buildout::
 
-    virtualenv-2.7 .
+    virtualenv .
     python bootstrap.py -c buildout-dvl.cfg
     ./bin/buildout -c buildout-dvl.cfg
 
