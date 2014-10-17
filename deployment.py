@@ -36,7 +36,7 @@ tst = dict(
     credentials={'username': 'admin', 'password': 'secret', },
     site_id=_site_id,
     webserver='apache2',
-    sitename='%s-tst.gw20e.com' % _env_name,
+    sitename='%s-tst.puppet' % _env_name,
     remote_configs={'clockusers': 'clockuser.cfg'},
 )
 
@@ -58,7 +58,7 @@ acc = dict(
     credentials={'username': 'admin', 'password': 'secret', },
     site_id=_site_id,
     webserver='apache2',
-    sitename='%s-acc.gw20e.com' % _env_name,
+    sitename='%s-acc.puppet' % _env_name,
     remote_configs={'clockusers': 'clockuser.cfg'},
 )
 
@@ -92,7 +92,7 @@ prdfe = dict(
     varnish={'port': _base_port + 40003},
     haproxy={'port': _base_port + 40002, 'instances': prd['instances'], },
     webserver='apache2',
-    sitename='%s-prd.gw20e.com' % _env_name,
+    sitename='%s-prd.puppet' % _env_name,
     site_id=prd['site_id'],
 )
 
