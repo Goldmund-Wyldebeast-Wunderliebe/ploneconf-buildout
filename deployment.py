@@ -2,8 +2,8 @@ _base_port = 8080
 _env_name = 'fabric'
 _site_id = 'Plone'
 
-_flying_ip = '91.194.224.146'
-_servers = {'dhansak': '192.168.3.44', 'patia': '192.168.3.45'}
+_flying_ip = 'ploneconf.puppet'
+_servers = {'ploneconf': 'ploneconf.puppet'}
 
 _modules = {
     'gww.imprint': 'git https://github.com/Goldmund-Wyldebeast-Wunderliebe/gww.imprint.git',
