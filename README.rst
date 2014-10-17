@@ -142,8 +142,8 @@ Troubleshooting
 Plone dependencies
 ^^^^^^^^^^^^^^^^^^
 
- Make sure you've installed the depencencies which are required by Plone.
- Use `install.plone.dependencies`_ to install required packages.
+Make sure you've installed the depencencies which are required by Plone.
+Use `install.plone.dependencies`_ to install required packages.
 
  .. _`https://github.com/collective/install.plone.dependencies`: `install.plone.dependencies`_
 
