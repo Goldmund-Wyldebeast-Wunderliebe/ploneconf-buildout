@@ -1,5 +1,5 @@
 _base_port = 8080
-_env_name = 'fabric'
+_env_name = 'testapp'
 _site_id = 'Plone'
 
 _flying_ip = 'ploneconf.puppet'
